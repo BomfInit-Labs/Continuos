@@ -1,0 +1,66 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches: ['main', 'develop']
+  pull_request:
+    branches: ['*']
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  essentials:
+    name: Essentials
+    runs-on: [self-hosted]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./templates/check_merge
+      - uses: ./templates/check_conflicts
+      - uses: ./templates/check_draft
+
+  lint:
+    name: Linting
+    runs-on: [self-hosted]
+    needs: [essentials]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./templates/lint
+
+  docs:
+    name: Documentation
+    runs-on: [self-hosted]
+    needs: [essentials]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./templates/docs_check
+
+  security_scan:
+    name: Security Scan
+    runs-on: [self-hosted]
+    needs: [lint, docs]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./templates/security_scan
+
+  template_validate:
+    name: Template Validate
+    runs-on: [self-hosted]
+    needs: [security_scan]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./templates/template_validate
+
+  tag_release:
+    name: Tag Release
+    runs-on: [self-hosted]
+    needs: [template_validate]
+    if: github.ref == 'ref/heads/main'
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: ./templates/tag_release
