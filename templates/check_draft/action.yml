@@ -9,4 +9,4 @@ runs:
       shell: bash
       env:
         CI_MERGE_REQUEST_TITLE: ${{ github.event.pull_request.title || '' }}
-      run: case "${CI_MERGE_REQUEST_TITLE} in 'Draft' to enabled"; exit 1;;esac
+      run: case "${CI_MERGE_REQUEST_TITLE} in Draft*) echo "Remove 'Draft' to enabled"; exit 1;;esac
