@@ -35,3 +35,11 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: ./templates/docs_check
+
+  security_scan:
+    name: Security Scan
+    runs-on: [self-hosted]
+    needs: [lint, docs]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./templates/security_scan
