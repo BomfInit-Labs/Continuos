@@ -1,5 +1,3 @@
-
-
 # 🚀 Continuos
 
 **A modern template with ready-to-use YAML code for CI/CD pipelines.**
