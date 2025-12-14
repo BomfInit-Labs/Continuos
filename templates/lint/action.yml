@@ -17,6 +17,14 @@ runs:
       run: uv sync
       shell: bash
 
+    - name: Show Python Version
+      run: python --version
+      shell: bash
+
+    - name: Clean Pre-Commit Cache
+      run: uv run pre-commit clean
+      shell: bash
+
     - name: Run Pre-Commit
       run: uv run pre-commit run --all-files --show-diff-on-failure
       shell: bash
