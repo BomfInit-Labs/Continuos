@@ -30,7 +30,7 @@ jobs:
 
   docs:
     name: Documentation
-    runs-on: [sefl-hosted]
+    runs-on: [self-hosted]
     needs: [essentials]
     steps:
       - uses: actions/checkout@v4
