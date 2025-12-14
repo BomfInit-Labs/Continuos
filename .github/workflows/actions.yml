@@ -19,3 +19,11 @@ jobs:
       - uses: ./templates/check_merge
       - uses: ./templates/check_conflicts
       - uses: ./templates/check_draft
+
+  lint:
+    name: Linting
+    runs-on: [self-hosted]
+    needs: [essentials]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./templates/lint
