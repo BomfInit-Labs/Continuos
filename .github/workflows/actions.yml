@@ -11,3 +11,9 @@ defaults:
     shell: bash
 
 jobs:
+  essentials:
+    name: Essentials
+    runs-on: [self-hosted]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./templates/check_merge
