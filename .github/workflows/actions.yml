@@ -51,3 +51,16 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: ./templates/template_validate
+
+  tag_release:
+    name: Tag Release
+    runs-on: [self-hosted]
+    needs: [template_validate]
+    if: github.ref == 'ref/heads/main'
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: ./templates/tag_release
