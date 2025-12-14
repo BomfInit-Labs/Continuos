@@ -27,3 +27,11 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: ./templates/lint
+
+  docs:
+    name: Documentation
+    runs-on: [sefl-hosted]
+    needs: [essentials]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./templates/docs_check
