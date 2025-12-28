@@ -1,5 +1,9 @@
 # 🚀 Continuos
 
+[![CI/CD Pipeline](https://github.com/BomfInit-Labs/Continuos/actions/workflows/actions.yml/badge.svg)](https://github.com/BomfInit-Labs/Continuos/actions/workflows/actions.yml)
+
+<!-- README.md -->
+
 **A modern template with ready-to-use YAML code for CI/CD pipelines.**
 
 > **Empower your DevOps!** Use this repository as a reference or starting point to standardize and accelerate your automation workflows across multiple projects.
